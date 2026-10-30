@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+/* Palette: blackberry ink on flour-white, butter-yellow for deals. */
+@theme {
+  --color-ink: #34182f;
+  --color-ink-soft: #6b5466;
+  --color-berry: #7a2e5c;
+  --color-butter: #f5c542;
+  --color-butter-soft: #fdf3d3;
+  --color-mist: #f6f2f5;
+  --color-line: #e6dce4;
+  --color-sage: #3f6b47;
+  --color-danger: #b3261e;
+}
+
+@theme inline {
+  --font-display: var(--font-display-face), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-sans-face), system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply bg-ink text-white hover:bg-berry;
+  }
+  .btn-secondary {
+    @apply border border-ink/25 bg-white text-ink hover:border-ink;
+  }
+  .btn-butter {
+    @apply bg-butter text-ink hover:bg-[#ebb92e];
+  }
+  .btn-sm {
+    @apply px-3.5 py-1.5 text-xs;
+  }
+  .field {
+    @apply w-full rounded-lg border border-line bg-white px-3 py-2 text-sm text-ink placeholder:text-ink-soft/60 focus:border-berry focus:outline-none;
+  }
+  .label {
+    @apply mb-1 block text-sm font-medium text-ink;
+  }
+  .panel {
+    @apply rounded-2xl border border-line bg-white p-6;
+  }
+  .data-table {
+    @apply w-full text-left text-sm;
+  }
+  .data-table th {
+    @apply border-b border-line px-3 py-2 font-medium text-ink-soft;
+  }
+  .data-table td {
+    @apply border-b border-line px-3 py-3 align-top;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-berry);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  @page {
+    size: A4;
+    margin: 14mm;
+  }
+}
